@@ -1,15 +1,135 @@
 <html>
+    <body>      
+   
+        <div style="margin-left: auto; margin-right: auto; margin-top: 40px;
+        padding: 20px; width: 500px; font-size: 16px; font-family:'Segoe UI', sans-serif;">
+        Lila-Bot👧
+       
+       <div style=" margin-top:8px; padding: 40px; background-color: #C8A2C8;
+       border: 6px solid #041d64; border-radius: 25px;">
+    
+        <form name="chatForm">
+            <p id="botSays">What is your name ? </p>
+            <br>         
+            <input type="text" name="userInput" >
+            <input type="button" value="Send" onClick="displayFeedback(this.form)">
+    
+        </form>
+       </div>
+       </div>  
+    
+    <script>
+    
+       // function displayFeedback(form) {
+    
+          //  var feedbackText;
+          //  var userInput= form.userInput.value;
+    
+           // feedbackText="Hello, "+ userInput+" ! " +"<br>It's great to meet you!"+
+           // " I am Lila, a sophmore at the University of Massachusetts.";
+    
+            //update the feedback 
+           // document.getElementById("botSays").innerHTML = feedbackText; 
+            
+        //}
+        var counter=0;
+var totalQuestions=4;
+var Favartist="blink-182";
+var FavartistsList=["ariana grande","beyonce", "clairo", "noah khan"];
+var myMajor="geology";
+var majorInterestedList=["sociology", "environmental science", "datascience", "atmospheric science" ];
 
-<head>
-<title>My Web Page</title>
-</head>
+var userName;
 
-<body>
-<p> <H1>My name is Brynn &hearts;</H1><br>I am a freshman at Mount Holyoke College.<br> I am originally from southern Connecticut :) <br> I am currently wiriting in HTML! </p>
-<p><H3>Some sites I like:</H3><br></p>
-<p><a HREF="https://www.nps.gov"> National Parks Service website!</a></p>
-<p><a HREF="https://www.jstor.org">JSTOR!</a></p>
-</body>
-<BODY BGCOLOR= WHITE TEXT=SADDLEBROWN>
+    function displayFeedback(form) {
+        counter++;
+
+        var feedbackText="";
+        var newQuestionText="";
+
+        var userInput= form.userInput.value;
+
+        if (counter==1) {        
+            userName= userInput;
+            feedbackText="Hello, "+ userName+" ! " +"<br>It's great to meet you!"+
+            " I am Lila, a sophmore at the University of Massachusetts.";
+
+            newQuestionText="Do you also attend Umass ?";              
+        }
+
+        if (counter==2) {        
+            feedbackText="Thanks for sharing."; 
+            newQuestionText="What is your Major?";              
+        }
+        if(counter==3){
+           
+            if (userInput.toLowerCase()== myMajor) feedbackText="Great! I am also majoring in "+ userInput+"."; 
+            
+            else {
+                feedbackText="I guess you must find "+userInput+" very interesting."+" I am majoring in "+myMajor;
+                
+                //check if user's major is one the majors in your majorInterestedList 
+                for (let i = 0; i < majorInterestedList.length; i++) {      
+                    if (userInput.toLowerCase() == majorInterestedList[i]) {
+                        feedbackText=userInput+ " was one of the majors I was interested to pursue."+
+                        " I am now majoring in "+myMajor+".";
+                    }    
+                }
+        } newQuestionText="What is your favorite artist ?"; 
+        }
+
+        if (counter==4) { 
+            for (let i = 0; i < FavartistsList.length; i++) { 
+            if (userInput.toLowerCase()==FavartistsList[i])  {
+                feedbackText=userInput+ " is one of my favorite artists!";}
+                else{
+                        feedbackText= "I guess "+userInput+"must sound good";
+                    }
+                if (userInput.toLowerCase()== Favartist){
+                    feedbackText=userInput+"is my favorite artist!";
+                    
+
+                }
+            }
+        }
+        
+        //if you have reached the last question
+        if (counter>=totalQuestions ) {
+            feedbackText=feedbackText+"<br><br>It was nice talking to you, "+userName+"."+
+            "<br>I hope you have a great day!";           
+        }
+      
+        //update the feedback and clear the input box
+        document.getElementById("botSays").innerHTML = feedbackText+ "<br><br>"+newQuestionText;   
+        form.userInput.value=""; 
+    }
+    
+       
+        //update the feedback and clear the input box
+        document.getElementById("botSays").innerHTML = feedbackText+ "<br><br>"+newQuestionText;   
+        form.userInput.value=""; 
+    
+    </script>
+    </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </html>
-
